@@ -1,13 +1,22 @@
-from time import sleep
-SECONDS_IN_MINUTES = 60
-INTERVAL_IN_MINUTES = 5
-TIME_INTERVAL = SECONDS_IN_MINUTES * INTERVAL_IN_MINUTES
+from dagster import op, job, ScheduleDefinition, Definitions
+from datetime import datetime
 
+@op
+def say_hello():
+    print(f"Hello! Time is {datetime.utcnow()}")
 
-def main():
-    for i in range(60):
-        sleep(TIME_INTERVAL)
-        print(f'elapsed time is {i*INTERVAL_IN_MINUTES} minutes')
+@job
+def hello_job():
+    say_hello()
 
-if __name__ == "__main__":
-    main()
+# Run every minute
+hello_schedule = ScheduleDefinition(
+    job=hello_job,
+    cron_schedule="* * * * *",   # every minute
+)
+
+# Dagster MUST have a top-level Definitions object
+defs = Definitions(
+    jobs=[hello_job],
+    schedules=[hello_schedule],
+)
