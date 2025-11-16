@@ -8,7 +8,7 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - nginx.localtest.me
+    - nginx-demo.localtest.me
     secretName: nginx-demo-tls
   rules:
   - host: nginx-demo.localtest.me
