@@ -5,7 +5,7 @@ FROM dagster/user-code-example:1.12.1
 WORKDIR /workspace
 
 # Copy your dagster code
-COPY dagster ./dagster
+COPY code ./dagster
 
 # If hello.py uses ANY libs (pandas, requests, etc.)
 # Add them here:
