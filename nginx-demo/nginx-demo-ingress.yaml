@@ -9,9 +9,9 @@ spec:
   tls:
   - hosts:
     - nginx.localtest.me
-    secretName: nginx-tls
+    secretName: nginx-demo-tls
   rules:
-  - host: nginx.localtest.me
+  - host: nginx-demo.localtest.me
     http:
       paths:
       - path: /
